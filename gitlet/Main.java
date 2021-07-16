@@ -45,7 +45,7 @@ public class Main {
                     message("Please enter a commit message.");
                     System.exit(0);
                 }
-                new Repository().commit(message);
+                new Repository().commit(message, null);
                 break;
             case "rm":
                 if (!(GITLET_DIR.exists() && GITLET_DIR.isDirectory())) {
@@ -152,6 +152,15 @@ public class Main {
                 validateNumArgs(args, 2);
                 String commitId = args[1];
                 new Repository().reset(commitId);
+                break;
+            case "merge":
+                if (!(GITLET_DIR.exists() && GITLET_DIR.isDirectory())) {
+                    message("Not in an initialized Gitlet directory.");
+                    System.exit(0);
+                }
+                validateNumArgs(args, 2);
+                String branchNam = args[1];
+                new Repository().merge(branchNam);
                 break;
             default:
                 message("No command with that name exists.");

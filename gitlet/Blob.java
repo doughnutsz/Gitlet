@@ -1,10 +1,8 @@
 package gitlet;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 
-import static gitlet.Repository.GITLET_DIR;
 import static gitlet.Repository.OBJECTS_DIR;
 import static gitlet.Utils.*;
 import static gitlet.Utils.writeObject;
@@ -37,30 +35,12 @@ public class Blob implements Serializable {
         return b;
     }
 
-    public void saveBlob() {
-        // TODO (hint: don't forget dog names are unique)
-        File a = join(OBJECTS_DIR,id.substring(0,2),id.substring(2));
-        try {
-            a.createNewFile();
-        } catch (IOException e) {
-        }
-        writeObject(a,this);
-    }
-
     public void writeContentToSource() {
         writeContents(source, content);
     }
 
     public String getId() {
         return id;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public File getSource() {
-        return source;
     }
 
     public File getFile() {
@@ -75,5 +55,13 @@ public class Blob implements Serializable {
             }
         }
         writeObject(file, this);
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public File getSource() {
+        return source;
     }
 }

@@ -3,7 +3,6 @@ package gitlet;
 // TODO: any imports you need here
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date; // TODO: You'll likely use this in this class
@@ -65,16 +64,6 @@ public class Commit implements Serializable {
         File a = join(OBJECTS_DIR,id.substring(0,2),id.substring(2));
         Commit c = readObject(a, Commit.class);
         return c;
-    }
-
-    public void saveCommit() {
-        // TODO (hint: don't forget dog names are unique)
-        File a = join(OBJECTS_DIR,id.substring(0,2),id.substring(2));
-        try {
-            a.createNewFile();
-        } catch (IOException e) {
-        }
-        writeObject(a,this);
     }
 
     public boolean restoreTracked(String filePath) {
